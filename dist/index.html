@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo List</title>
+  <script src="https://kit.fontawesome.com/e224fbe5f8.js" crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../src/style.css">
+</head>
+<body>
+  <header>
+    <div><i class="fas fa-check-double"></i></div>
+    <div><h1>Todo</h1></div>
+    <i class="fas fa-plus add-task-icon"></i>
+  </header>
+  <div id="main">
+    <aside>
+      <div id="sidebar-add-project">
+        <div id="add-project-header">
+          <div>Add Project</div>
+          <div id="project-add-btn"><i class="fas fa-plus-circle"></i></div>
+        </div>
+        <div id="projects">
+        </div>
+      </div>
+      <div id="footer">
+        <div>2023 shinlee</div>
+        <a href="https://github.com/vivilover" target="_blank"><i class="fab fa-github"></i></a>
+      </div>
+    </aside>
+    <main>
+
+    </main>
+    <div id="modal">
+      <div id="modal-content">
+        <div id="modal-header">
+          <div class="modal-header-text">Add Project</div>
+          <i class="fas fa-times" id="modal-close-btn"></i>
+        </div>
+        <div id="modal-input">
+          <label for="new-project">Project name<span class="modal-asterisk">*</span></label>
+
+          <input type="text" id="new-project" required name="project-name">
+        </div>
+        <div id="modal-button-container">
+          <button type="button" id="modal-add-btn">Add</button>
+          <button type="button" id="modal-cancel-btn">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Task Modal -->
+    <div id="task-modal">
+      <div id="task-modal-content">
+        <div class="task-modal-header">Add Task</div>
+        <div class="task-body">
+          <div class="task-name-container">
+            <label for="task-name">Task</label>
+            <input id="task-name">
+          </div>
+          <div class="task-due-date">
+            <label>Due Date</label>
+            <input type="date" name="task-due-date" id="task-due-date">
+          </div>
+          <div class="task-importance">
+            <div>Priority</div>
+            <div>
+              <input type="radio" id="low" name="priority" value="low">
+              <label for="low">Low</label>
+            </div>
+            <div>
+              <input type="radio" id="medium" name="priority" value="medium">
+              <label for="medium">Medium</label>
+            </div>
+            <div>
+              <input type="radio" id="high" name="priority" value="high">
+              <label for="high">High</label>
+            </div>
+          </div>
+          <div class="task-belong-project">
+            <label for="task-project">Project</label>
+            <select id="task-project" name="task-project">
+              <option value="input">Input</option>
+            </select>
+          </div>
+        </div>
+        <div class="task-button-group">
+          <div id="task-add-btn">Add</div>
+          <div id="task-cancel-btn">Cancel</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,443 @@
+:root {
+  --coral: #f87171;
+  --lightpink: #fecaca;
+
+  --lightgray: #a8a29e;
+  --lightyellow: #ffedd5;
+  --lightviolet: #a78bfa;
+  --lightfuchsia: #fae8ff;
+  --wine: #db2777;
+  --indigo: #818cf8;
+  --lightindigo: #c7d2fe;
+  --apricot: #fed7aa;
+  --verylightgray: #fafafa;
+  --lightmint: #99f6e4;
+  --lightemerald: #d1fae5;
+  --orange400: #fb923c;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 15px;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  margin: 0;
+}
+
+header {
+  display: flex;
+  align-items: baseline;
+  column-gap: 8px;
+  padding-left: 40px;
+  background-color: var(--indigo);
+  color: #eee;
+  height: 10vh;
+}
+
+.add-task-icon {
+  margin-left: auto;
+  margin-right: 30px;
+  padding: 8px;
+}
+
+.add-task-icon:hover {
+  background-color: rgb(200, 171, 171);
+  padding: 8px;
+  border-radius: 10px;
+}
+
+/* #main includes <aside> and <main> */
+#main {
+  display: flex;
+  flex: 1;
+}
+
+aside {
+  flex: 0 0 20vw; /* Child element flex styling */
+  display: flex;
+  flex-direction: column;
+  background-color: #eee;
+  padding: 0 20px;
+  font-size: 1.1em;
+}
+
+/* Sidebar */
+#sidebar-menu {
+  flex: 0 0 calc(50%); /* Child element flex styling */
+  padding-top: 25px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+#sidebar-menu > div {
+  display: flex;
+  column-gap: 10px;
+}
+
+.sidebar-menu-icon > i {
+  text-align: left;
+  width: 15px;
+}
+
+#add-project-header {
+  flex: 0 0 calc(20%); /* Child element flex styling */
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid gray;
+}
+
+#sidebar-add-project {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+}
+#projects {
+  flex: 0 0 150px;  /* flex child style */
+  overflow: auto;
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 5px;
+  justify-content: flex-start;
+}
+.created-project-container {
+  flex: 0 0 100%; /* Flex Child styling. Parent: #projects */
+  display: flex;
+  justify-content: flex-start;
+  column-gap: 7px;
+  border-radius: 4px;
+  background-color: var(--apricot);
+  padding: 3px 5px;
+  height: 35px;
+}
+.created-project-container:hover {
+  opacity: 0.5;
+}
+.created-project-container > * {
+  background: none;
+}
+.created-project-container > *:nth-child(2) {
+  flex: 1 0 auto;
+}
+.created-project-container > *:nth-child(1), .created-project-container > *:nth-child(2) {
+  align-self: stretch;
+}
+.project-delete-icon {
+  margin-left: auto;
+}
+
+#footer {
+  margin-top: auto;
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: center;
+  column-gap: 10px;
+}
+
+/* MAIN */
+main {
+  flex: 1;
+  background-color: var(--verylightgray);
+  display: flex;
+  flex-direction: column;
+  /* width: 85%; */
+  row-gap: 20px;
+}
+main > * {
+  width: 85%;
+  margin: 0 auto;
+}
+
+.main-project-header {
+  font-size: 25px;
+  text-align: left;
+  margin-top: 20px;
+}
+
+.main-task-container {
+  display: flex;
+  justify-content: center;
+  padding: 0.7rem 0.7rem 0.7rem 1rem;
+  background-color: #ddd;
+  column-gap: 1rem;
+  /* Added for checkbox */
+}
+
+.opaque {
+  opacity: 0.6;
+}
+
+.green-background {
+  background-color: #86efac;
+}
+
+/* .main-task-container:hover {
+  opacity: 0.7;
+} */
+
+.task-checkbox-container {
+  display: block;
+  position: relative;
+  padding-left: 1rem;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.task-checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.task-checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 1.2rem;
+  width: 1.2rem;
+  background-color: #eee;
+  border-radius: 1rem;
+}
+
+
+.task-checkbox-container:hover .task-check-input:not(:checked) ~ .task-checkmark {
+  background-color: #ccc;
+}
+/* .task-checkbox-container input:checked ~ .task-checkmark */
+input:checked ~ .task-checkmark {
+  background-color: #86efac;
+}
+
+/* Create checkmark (hidden by default) */
+.task-checkmark::after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show checkmark when input checked */
+.task-checkbox-container input:checked ~ .task-checkmark::after {
+  display: block;
+}
+
+/* Style checkmark */
+.task-checkbox-container .task-checkmark::after {
+  left: 6px;
+  top: 3px;
+  width: 4px;
+  height: 9px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.task-checkmark {
+  pointer-events: none;
+}
+
+.text-strike-through {
+  text-decoration: line-through;
+}
+
+.main-task-date {
+  margin-left: auto;
+}
+.main-task-priority-color {
+  width: 35px;
+  height: 20px;
+}
+.main-task-remove-btn:hover {
+  opacity: 0.65;
+}
+
+/* MODAL */
+#modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+#modal-content {
+  background-color: #f4f4f4;
+  margin: 10% auto;
+  width: 30%;
+  /* padding: 20px; */
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+  border-radius: 10px;
+}
+
+#modal-header, #modal-input {
+  padding: 20px;
+}
+
+#modal-header {
+  display: flex;
+  justify-content: space-between;
+  background: #aaa;
+  border-radius: 10px 10px 0 0;
+}
+.modal-header-text {
+  font-size: 1.4em;
+}
+
+#modal-close-btn {
+  color: #555;
+}
+
+#modal-input label, #modal-input input {
+  display: block;
+}
+
+#modal-input input {
+  height: 30px;
+  width: 100%;
+  font-size: 1em;
+}
+.modal-asterisk {
+  color: red;
+  font-size: 0.85em;
+}
+
+#modal-button-container {
+  display: flex;
+  justify-content: center;
+  column-gap: 13px;
+  padding-bottom: 20px;
+}
+
+#modal-add-btn {
+  background-color: lightseagreen;
+}
+
+#modal-cancel-btn {
+  background-color: lightpink;
+}
+
+#modal-add-btn, #modal-cancel-btn {
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  font-size: 1.15em;
+}
+
+/* Modal for Adding Task */
+#task-modal {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+#task-modal-content {
+  background-color: white;
+  margin: 10% auto;
+  width: 30%;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+  border-radius: 10px;
+}
+
+.task-modal-header {
+  border-radius: 10px 10px 0 0;
+  padding: 1em 1.2em;
+  background-color: lightgreen;
+}
+
+.task-body {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  row-gap: 15px;
+  padding-bottom: 15px;
+  margin: 20px auto 20px auto;
+  position: relative;
+}
+/* For border-bottom */
+.task-body::after {
+  content: '';
+  position: absolute;
+  margin: auto;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: gray;
+}
+
+.task-name-container, .task-due-date {
+  display: flex;
+  column-gap: 10px;
+}
+
+.task-name-container *:nth-child(2) {
+  flex-grow: 1;
+}
+
+.task-due-date *:nth-child(2) {
+  flex-grow: 1;
+}
+
+#task-due-date {
+
+}
+
+.task-importance {
+  display: flex;
+  justify-content: flex-end;
+}
+.task-importance div:nth-child(1) {
+  margin-right: auto;
+}
+
+.task-belong-project {
+  display: flex;
+  justify-content: space-between;
+}
+
+.task-button-group {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 20px;
+  column-gap: 7px;
+  padding-bottom: 20px;
+}
+#task-add-btn {
+  background-color: lightblue;
+}
+#task-cancel-btn {
+  background-color: lightsalmon;
+}
+#task-add-btn, #task-cancel-btn {
+  padding: 7px 10px;
+  border-radius: 5px;
+}
+
